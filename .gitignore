@@ -48,3 +48,12 @@ Thumbs.db
 *.mov
 *.wmv
 
+# SML Compilation Manager
+.cm/
+
+# Racket
+compiled/
+
+# Backup
+*~
+*.bak

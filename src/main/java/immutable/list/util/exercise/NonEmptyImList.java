@@ -29,7 +29,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 /* package-private */ final class NonEmptyImList<E> implements ImList<E> {

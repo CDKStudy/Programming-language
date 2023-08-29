@@ -28,7 +28,7 @@ import static immutable.list.util.exercise.ImLists.cons;
 import static immutable.list.util.exercise.ImLists.nil;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public class SumProductCountdownFactorial {

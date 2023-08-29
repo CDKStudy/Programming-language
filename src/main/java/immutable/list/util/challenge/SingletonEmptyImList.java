@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public enum SingletonEmptyImList implements ImList<Object> {

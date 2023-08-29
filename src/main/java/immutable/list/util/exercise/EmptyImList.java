@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 /* package-private */ class EmptyImList<E> implements ImList<E> {

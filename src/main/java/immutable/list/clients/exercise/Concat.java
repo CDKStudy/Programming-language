@@ -27,7 +27,7 @@ import immutable.list.util.core.ImList;
 import static immutable.list.util.exercise.ImLists.cons;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public class Concat {

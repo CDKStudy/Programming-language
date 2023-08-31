@@ -1,5 +1,5 @@
 structure SumDistancesToOriginFun = struct
-	(* __STUDENT_NAME__ *)
+	(* Dekang Cao *)
 	(* 
 	 * note: use of #1 and #2 to access the items of the tuple
 	 * leaves some ambiguity of exactly how big the tuple actually is.

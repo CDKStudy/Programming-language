@@ -1,0 +1,9 @@
+Group
+    structure SquaresFunTesting
+is
+    squares_fun_testing.sml
+    ../squares_testing_core/squares_testing.cm
+    ../../../main/sml/warmup_squares_fun/squares_fun.cm
+    ../unit_testing/unit_testing.cm
+    $/basis.cm
+    $/smlnj-lib.cm

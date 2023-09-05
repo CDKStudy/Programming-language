@@ -1,6 +1,6 @@
 structure ClosestToOrigin = struct
 
-    (* __STUDENT_NAME__ *)
+    (* Dekang Cao *)
     fun closest_to_origin(xys : (real*real) list) : (real*real) option =
     	raise Fail "NotYetImplemented"
 

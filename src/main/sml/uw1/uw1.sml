@@ -1,6 +1,6 @@
 (* HW1 Provided Code *)
 
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 val is_older = fn _ => raise Fail "Not Yet Implemented.  Delete this line and implement function is_older."
 
 val number_in_month = fn _ => raise Fail "Not Yet Implemented.  Delete this line and implement function number_in_month."

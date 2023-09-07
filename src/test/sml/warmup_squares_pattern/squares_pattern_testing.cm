@@ -1,0 +1,9 @@
+Group
+    structure SquaresPatternTesting
+is
+    squares_pattern_testing.sml
+    ../squares_testing_core/squares_testing.cm
+    ../../../main/sml/warmup_squares_pattern/squares_pattern.cm
+    ../unit_testing/unit_testing.cm
+    $/basis.cm
+    $/smlnj-lib.cm

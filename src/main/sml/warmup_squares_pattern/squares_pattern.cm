@@ -1,0 +1,6 @@
+Library
+    structure SquaresPattern
+is
+    squares_pattern.sml
+    $/basis.cm
+    $/smlnj-lib.cm

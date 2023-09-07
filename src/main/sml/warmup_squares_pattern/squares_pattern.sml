@@ -1,5 +1,5 @@
 structure SquaresPattern = struct
-	(* __STUDENT_NAME__ *)
+	(* Dekang Cao *)
 	fun to_squares(xs : int list) : int list =
 		raise Fail "NotYetImplemented"
 

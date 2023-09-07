@@ -1,5 +1,5 @@
 structure IsStrictlyAscendingPattern = struct
-	(* __STUDENT_NAME__ *)
+	(* Dekang Cao *)
 
     fun is_strictly_ascending(xs : int list) : bool =
 			raise Fail "NotYetImplemented"

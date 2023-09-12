@@ -1,5 +1,5 @@
 structure EliminateUnsorted = struct
-	(* __STUDENT_NAME__ *)
+	(* Dekang Cao *)
 
     fun eliminate_unsorted(xs : int list) : int list =
     	raise Fail "NotYetImplemented"

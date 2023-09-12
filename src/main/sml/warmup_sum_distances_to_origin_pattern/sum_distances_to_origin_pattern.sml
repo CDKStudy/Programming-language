@@ -1,5 +1,5 @@
 structure SumDistancesToOriginPattern = struct
-	(* __STUDENT_NAME__ *)
+	(* Dekang Cao *)
 
 	(* 
 	 * note: pattern matching removes any ambiguity of the type of xys, 

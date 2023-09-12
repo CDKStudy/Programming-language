@@ -26,7 +26,7 @@ import immutable.list.util.core.ImList;
 import immutable.tuple.ImTuple2;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public class SumDistancesToOrigin {

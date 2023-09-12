@@ -4,7 +4,7 @@ structure Hearts = struct
   type card = suit * rank
   type player = card list
 
-  (* __STUDENT_NAME__ *)
+  (* Dekang Cao *)
   fun is_card_valid(c : card) : bool =
   	raise Fail "NotYetImplemented"
 

@@ -1,5 +1,5 @@
 structure SumScanTail = struct
-	(* __STUDENT_NAME__ *)
+	(* Dekang Cao *)
 	fun sum_scan(xs : int list) : int list =
 		raise Fail "NotYetImplemented"
 end

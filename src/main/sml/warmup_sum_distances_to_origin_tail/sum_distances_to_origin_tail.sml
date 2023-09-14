@@ -1,5 +1,5 @@
 structure SumDistancesToOriginTail = struct
-	(* __STUDENT_NAME__ *)
+	(* Dekang Cao *)
 
 	fun sum_distances_to_origin(xys) =
 		raise Fail "NotYetImplemented"

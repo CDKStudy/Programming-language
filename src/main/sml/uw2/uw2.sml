@@ -1,6 +1,6 @@
 (* Dan Grossman, Coursera PL, HW2 Provided Code *)
 
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 
 (* if you use this function to compare two strings (returns true if the same
    string), then you avoid several of the functions in problem 1 having

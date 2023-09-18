@@ -1,0 +1,9 @@
+Group
+    structure SquaresUsingHigherOrderFunctionsTesting
+is
+    squares_using_hof_testing.sml
+    ../squares_testing_core/squares_testing.cm
+    ../../../main/sml/warmup_squares_using_hof/squares_using_hof.cm
+    ../unit_testing/unit_testing.cm
+    $/basis.cm
+    $/smlnj-lib.cm

@@ -1,0 +1,6 @@
+Library
+    structure SquaresUsingHigherOrderFunctions
+is
+    squares_using_hof.sml
+    $/basis.cm
+    $/smlnj-lib.cm

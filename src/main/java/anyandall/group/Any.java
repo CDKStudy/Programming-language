@@ -27,7 +27,7 @@ import immutable.list.util.core.ImList;
 import java.util.function.Predicate;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public class Any {

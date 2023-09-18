@@ -8,7 +8,7 @@ import immutable.list.util.exercise.ImLists;
 import java.util.Optional;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author <a href="http://www.cse.wustl.edu/~dennis.cosgrove/">Dennis Cosgrove</a>
  */
 public class HofClients {

@@ -26,7 +26,7 @@ import edu.wustl.cse.cosgroved.NotYetImplementedException;
 import java.util.function.Function;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public class NTimesHof {

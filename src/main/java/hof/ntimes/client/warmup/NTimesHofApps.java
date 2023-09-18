@@ -26,7 +26,7 @@ import hof.ntimes.util.warmup.NTimesHof;
 import immutable.list.util.core.ImList;
 
 /**
- * @author __STUDENT_NAME__
+ * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public class NTimesHofApps {

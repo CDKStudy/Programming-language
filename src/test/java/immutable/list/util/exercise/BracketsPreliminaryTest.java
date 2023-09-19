@@ -49,6 +49,9 @@ public class BracketsPreliminaryTest {
 	public void testFull() {
 		ImList<Integer> viaCons = cons(1, cons(2, (cons(3, cons(4, cons(5, nil()))))));
 		ImList<Integer> viaBrackets = brackets(1, 2, 3, 4, 5);
+		System.out.println(nil());
+		System.out.println(viaCons);
+		System.out.println(viaBrackets);
 		assertNotNull(viaBrackets);
 		assertEquals(viaCons, viaBrackets);
 

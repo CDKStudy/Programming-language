@@ -23,9 +23,12 @@ package immutable.list.clients.exercise;
 
 import edu.wustl.cse.cosgroved.NotYetImplementedException;
 import immutable.list.util.core.ImList;
+import org.checkerframework.checker.units.qual.A;
 
-import static immutable.list.util.exercise.ImLists.cons;
-import static immutable.list.util.exercise.ImLists.nil;
+import java.util.ArrayList;
+import java.util.List;
+
+import static immutable.list.util.exercise.ImLists.*;
 
 /**
  * @author Dekang Cao
@@ -39,8 +42,12 @@ public class SumProductCountdownFactorial {
 	 * @return the sum of the list
 	 */
 	public static int sum(ImList<Integer> xs) {
-		
-			throw new NotYetImplementedException();
+		int sum = 0;
+		while(!xs.isEmpty()){
+			sum = sum + xs.head();
+			xs = xs.tail();
+		}
+		return sum;
 		
 	}
 
@@ -51,8 +58,13 @@ public class SumProductCountdownFactorial {
 	 * @return the result of multiplying the values in xs
 	 */
 	public static int product(ImList<Integer> xs) {
-		
-			throw new NotYetImplementedException();
+
+		int sum = 1;
+		while(!xs.isEmpty()){
+			sum = sum * xs.head();
+			xs = xs.tail();
+		}
+		return sum;
 		
 	}
 
@@ -63,9 +75,12 @@ public class SumProductCountdownFactorial {
 	 * @return the list which contains the numbers from n down to 1
 	 */
 	public static ImList<Integer> countdown(int n) {
-		
-			throw new NotYetImplementedException();
-		
+		Integer arr[] = new Integer[n];
+		int i = 0;
+		while(n>0){
+			arr[i++] = n--;
+		}
+		return brackets(arr);
 	}
 
 	/**
@@ -76,8 +91,6 @@ public class SumProductCountdownFactorial {
 	 * @return n!
 	 */
 	public static int factorial(int n) {
-		
-			throw new NotYetImplementedException();
-		
+		return  product(countdown(n));
 	}
 }

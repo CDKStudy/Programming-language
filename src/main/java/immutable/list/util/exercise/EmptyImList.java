@@ -11,39 +11,42 @@ import java.util.NoSuchElementException;
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 /* package-private */ class EmptyImList<E> implements ImList<E> {
-	
 
+	private static EmptyImList instance = new EmptyImList();
 	/* package-private */ EmptyImList() {
 		
-			throw new NotYetImplementedException();
+			//throw new NotYetImplementedException();
 		
+	}
+	public static EmptyImList getInstance(){
+		return instance;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		
-			throw new NotYetImplementedException();
+
+		return true;
 		
 	}
 
 	@Override
 	public E head() {
-		
-			throw new NotYetImplementedException();
+
+		throw new NoSuchElementException();
 		
 	}
 
 	@Override
 	public ImList<E> tail() {
-		
-			throw new NotYetImplementedException();
+
+		throw new NoSuchElementException();
 		
 	}
 
 	@Override
 	public Iterator<E> iterator() {
-		
-			throw new NotYetImplementedException();
+
+		 return null;
 		
 	}
 

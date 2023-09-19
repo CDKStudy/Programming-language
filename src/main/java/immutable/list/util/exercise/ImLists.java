@@ -21,9 +21,10 @@
  ******************************************************************************/
 package immutable.list.util.exercise;
 
-import edu.wustl.cse.cosgroved.NotYetImplementedException;
-import immutable.list.util.challenge.SingletonEmptyImList;
 import immutable.list.util.core.ImList;
+
+import java.util.Iterator;
+import java.util.*;
 
 /**
  * @author Dekang Cao
@@ -37,10 +38,10 @@ public class ImLists {
 	 * @param <E> the type of elements held in the ImList
 	 * @return an empty ImList
 	 */
-	public static <E> ImList<E> nil() {
-		
-			throw new NotYetImplementedException();
-		
+	static EmptyImList instance = EmptyImList.getInstance();//Singleton pattern
+	static NonEmptyImList instance2;
+		public static <E> ImList<E> nil() {
+		return instance;
 	}
 
 	/**
@@ -53,9 +54,8 @@ public class ImLists {
 	 * @return the constructed list
 	 */
 	public static <E> ImList<E> cons(E head, ImList<E> tail) {
-		
-			throw new NotYetImplementedException();
-		
+		   instance2 = new NonEmptyImList(head,tail);
+		   return instance2;
 	}
 
 	
@@ -69,8 +69,28 @@ public class ImLists {
 	 */
 	@SafeVarargs
 	public static <E> ImList<E> brackets(E... elements) {
-		
-			throw new NotYetImplementedException();
-		
+		if(elements == null){
+			return instance;
+		}else{
+			Queue<E> que = new LinkedList<>();
+			for(E e :elements){
+				que.offer(e);
+			}
+			for(E e :que){
+				return  cons(que.poll(),collect(que));
+			}
+		}
+		return instance;
+	}
+
+	private static <E> ImList<E> collect(Queue<E> elements) {
+		if(elements.isEmpty()){
+			return instance;
+		}else{
+			for(E e :elements){
+				return  cons(elements.poll(),collect(elements));
+			}
+		}
+		return instance;
 	}
 }

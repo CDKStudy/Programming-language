@@ -35,8 +35,11 @@ public class Length {
 	 * @return the length of the specified list
 	 */
 	public static <E> int length(ImList<E> list) {
-		
-			throw new NotYetImplementedException();
-		
+		    int len = 0;
+		    while(!list.isEmpty()){
+				list = list.tail();
+				len++;
+			}
+			return len;
 	}
 }

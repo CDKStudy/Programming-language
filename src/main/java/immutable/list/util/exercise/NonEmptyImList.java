@@ -33,39 +33,41 @@ import java.util.Objects;
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 /* package-private */ final class NonEmptyImList<E> implements ImList<E> {
-	
+	 E head;
+	 ImList<E> tail;
 
-	/* package-private */ NonEmptyImList(E head, ImList<E> tail) {
-		
-			throw new NotYetImplementedException();
+	/* package-private */
+	    NonEmptyImList(E head, ImList<E> tail) {
+		    this.head = head;
+			this.tail = tail;
 		
 	}
 
 	@Override
 	public E head() {
 		
-			throw new NotYetImplementedException();
+			return head;
 		
 	}
 
 	@Override
 	public ImList<E> tail() {
 		
-			throw new NotYetImplementedException();
+			return tail;
 		
 	}
 
 	@Override
 	public boolean isEmpty() {
 		
-			throw new NotYetImplementedException();
+			return false;
 		
 	}
 
 	@Override
 	public Iterator<E> iterator() {
-		
-			throw new NotYetImplementedException();
+
+		return null;
 		
 	}
 

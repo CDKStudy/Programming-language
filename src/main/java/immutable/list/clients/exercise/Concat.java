@@ -24,6 +24,8 @@ package immutable.list.clients.exercise;
 import edu.wustl.cse.cosgroved.NotYetImplementedException;
 import immutable.list.util.core.ImList;
 
+import java.util.Stack;
+
 import static immutable.list.util.exercise.ImLists.cons;
 
 /**
@@ -44,8 +46,14 @@ public class Concat {
 	 * @return the list that is the contents of xs followed by the contents of ys
 	 */
 	public static <E> ImList<E> concat(ImList<E> xs, ImList<E> ys) {
-		
-			throw new NotYetImplementedException();
-		
+		Stack<E> stack = new Stack<>();
+		while(!xs.isEmpty()){
+			stack.push(xs.head());
+			xs = xs.tail();
+		}
+		while(!stack.isEmpty()){
+		ys = cons(stack.pop(),ys);//Similar to the form of sum = sum + i
+		}
+		return ys;
 	}
 }

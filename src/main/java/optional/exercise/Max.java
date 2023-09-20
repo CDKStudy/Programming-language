@@ -21,10 +21,11 @@
  ******************************************************************************/
 package optional.exercise;
 
-import edu.wustl.cse.cosgroved.NotYetImplementedException;
 import immutable.list.util.core.ImList;
 
 import java.util.Optional;
+
+import static immutable.list.util.exercise.ImLists.nil;
 
 /**
  * @author Dekang Cao
@@ -33,8 +34,15 @@ import java.util.Optional;
 public class Max {
 	
 	public static Optional<Integer> maximum(ImList<Integer> xs) {
-		
-			throw new NotYetImplementedException();
-		
+		int max = Integer.MIN_VALUE;
+		ImList<Integer> emptyList = nil();
+		if(xs == emptyList){
+			return Optional.empty();
+		}
+		while(!xs.isEmpty()){
+			max = Math.max(max,xs.head());
+			xs = xs.tail();
+		}
+		return Optional.of(max);
 	}
 }

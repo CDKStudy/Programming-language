@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 val sum = foldl(op+, 0, [1,2,3,4])
 
 

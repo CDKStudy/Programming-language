@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 (* Dennis Cosgrove *)
 structure Csv = struct
     fun is_new_line(c : char) : bool =

@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 
 (* map, foldl, and foldr made the cut for the top level environment. *)
 (* filter and find did not *)

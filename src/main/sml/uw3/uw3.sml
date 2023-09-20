@@ -70,5 +70,5 @@ val first_match = fn _ => raise Fail "Not Yet Implemented.  Delete this line and
 
 val typecheck_patterns = fn _ => raise Fail "Not Yet Implemented.  Delete this line and implement function typecheck_patterns."
 
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 

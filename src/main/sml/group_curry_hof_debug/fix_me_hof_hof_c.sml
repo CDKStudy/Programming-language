@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 fun range(min, maxExclusive) =
     if min>=maxExclusive
     then []

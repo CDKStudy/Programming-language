@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 val xys = [(10,20), (30,40), (50, 60)]
 
 val xs = map xys #1

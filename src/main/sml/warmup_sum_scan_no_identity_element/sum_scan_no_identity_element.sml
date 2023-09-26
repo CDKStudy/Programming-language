@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 structure SumScanNoIdentityElement = struct
 	(* the identity element for addition is 0 *)
 	(* https://en.wikipedia.org/wiki/Identity_element *)

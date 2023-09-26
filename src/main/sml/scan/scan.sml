@@ -1,5 +1,5 @@
 structure ScanHof = struct
-	(* __STUDENT_NAME__ *)
+	(* Dekang Cao *)
 	fun scan operation values =
 		raise Fail "NotYetImplemented"
 end

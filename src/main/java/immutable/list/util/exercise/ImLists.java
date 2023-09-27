@@ -93,4 +93,15 @@ public class ImLists {
 		}
 		return instance;
 	}
+
+	public static <E> ImList<E> collect2(Stack<E> elements) {
+		if(elements.isEmpty()){
+			return instance;
+		}else{
+			for(E e :elements){
+				return  cons(elements.pop(),collect2(elements));
+			}
+		}
+		return instance;
+	}
 }

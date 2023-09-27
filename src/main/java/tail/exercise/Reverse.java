@@ -23,20 +23,32 @@ package tail.exercise;
 
 import edu.wustl.cse.cosgroved.NotYetImplementedException;
 import immutable.list.util.core.ImList;
+import org.checkerframework.checker.units.qual.A;
 
-import static immutable.list.util.exercise.ImLists.cons;
-import static immutable.list.util.exercise.ImLists.nil;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Stack;
+
+import static immutable.list.util.exercise.ImLists.*;
 
 /**
  * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public class Reverse {
-	
-
 	public static <E> ImList<E> reverse(ImList<E> list) {
-		
-			throw new NotYetImplementedException();
-		
+		Stack<E> stack = new Stack<>();
+		List<E> arr = new ArrayList<>();
+		ImList<E> emptyList = nil();
+		if(list == emptyList){
+			return emptyList;
+		}else{
+			while(!list.isEmpty()){
+				stack.push(list.head());
+				list = list.tail();
+			}
+			return cons(stack.pop(),collect2(stack));
+		}
 	}
 }

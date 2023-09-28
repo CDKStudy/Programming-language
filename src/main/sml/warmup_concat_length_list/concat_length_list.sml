@@ -1,5 +1,5 @@
 structure ConcatLengthList = struct
-	(* __STUDENT_NAME__ *)
+	(* Dekang Cao *)
 	(* Dennis Cosgrove *)
 
 	

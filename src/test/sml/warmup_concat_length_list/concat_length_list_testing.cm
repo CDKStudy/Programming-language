@@ -1,0 +1,8 @@
+Group
+    structure ConcatLengthListTesting
+is
+    concat_length_list_testing.sml
+    ../../../main/sml/warmup_concat_length_list/concat_length_list.cm
+    ../unit_testing/unit_testing.cm
+    $/basis.cm
+    $/smlnj-lib.cm

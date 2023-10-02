@@ -1,0 +1,33 @@
+digraph g {
+
+	node [
+		shape = record
+	]
+
+	edge [
+		tailclip=false,
+		arrowhead=vee,
+		arrowtail=dot,
+		dir=both
+	]
+
+	5 [label= "{ 5 | { <child_left> | <child_right> } }"]
+	3 [label= "{ 3 | { <child_left> | <child_right> } }"]
+	1 [label= "{ 1 | { <child_left> | <child_right> } }"]
+	0 [label= "{ 0 | { <child_left> | <child_right> } }"]
+	2 [label= "{ 2 | { <child_left> | <child_right> } }"]
+	4 [label= "{ 4 | { <child_left> | <child_right> } }"]
+	8 [label= "{ 8 | { <child_left> | <child_right> } }"]
+	7 [label= "{ 7 | { <child_left> | <child_right> } }"]
+	9 [label= "{ 9 | { <child_left> | <child_right> } }"]
+
+	5:child_left:center -> 3
+	3:child_left:center -> 1
+	1:child_left:center -> 0
+	1:child_right:center -> 2
+	3:child_right:center -> 4
+	5:child_right:center -> 8
+	8:child_left:center -> 7
+	8:child_right:center -> 9
+
+}

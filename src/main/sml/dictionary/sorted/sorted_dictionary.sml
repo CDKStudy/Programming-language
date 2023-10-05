@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 
 structure SortedDictionary = DictionaryFn(struct
     type ''k compare_function = (''k*''k) -> order

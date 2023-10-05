@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 structure HashedDictionary = DictionaryFn(struct
 	type ''k hash_function = ''k -> int
 

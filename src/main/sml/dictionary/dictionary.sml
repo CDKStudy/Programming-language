@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 
 functor DictionaryFn(DictionaryParameter : DICTIONARY_FUNCTOR_PARAMETER) : DICTIONARY = struct
 

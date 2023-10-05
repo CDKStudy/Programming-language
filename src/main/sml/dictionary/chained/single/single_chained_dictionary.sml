@@ -1,4 +1,4 @@
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 
 structure SingleChainedDictionary = DictionaryFn(struct
     

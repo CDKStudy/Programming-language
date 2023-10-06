@@ -22,15 +22,21 @@
 package hof.util.exercise;
 
 import edu.wustl.cse.cosgroved.NotYetImplementedException;
+import immutable.list.clients.exercise.Length;
+import immutable.list.util.challenge.SingletonEmptyImList;
 import immutable.list.util.core.ImList;
+import immutable.list.util.exercise.EmptyImList;
+import immutable.list.util.exercise.ImLists;
+import org.checkerframework.checker.units.qual.A;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static immutable.list.util.exercise.ImLists.cons;
-import static immutable.list.util.exercise.ImLists.nil;
+import static immutable.list.util.exercise.ImLists.*;
 
 /**
  * @author Dekang Cao
@@ -53,20 +59,40 @@ public class Hof {
 	 * @return a list consisting of the elements which pass the predicate's test
 	 */
 	public static <E> ImList<E> filter(Predicate<E> predicate, ImList<E> list) {
-		
-			throw new NotYetImplementedException();
-		
+		if (list.isEmpty()) {
+			return ImLists.nil();
+		} else {
+			E head = list.head();
+			ImList<E> tail = list.tail();
+			if (predicate.test(head)) {
+				return ImLists.cons(head, filter(predicate, tail));
+			} else {
+				return filter(predicate, tail);
+			}
+		}
 	}
 
 	public static <E, R> R foldLeft(BiFunction<E, R, R> f, R acc, ImList<E> list) {
-		
-			throw new NotYetImplementedException();
-		
+		if (list.isEmpty()) {
+			return acc;
+		} else {
+			E head = list.head();
+			ImList<E> tail = list.tail();
+			R newAcc = f.apply(head, acc);
+			return foldLeft(f, newAcc, tail);
+		}
 	}
 
 	public static <E, R> R foldRight(BiFunction<E, R, R> f, R acc, ImList<E> list) {
-		
-			throw new NotYetImplementedException();
+
+		if (list.isEmpty()) {
+			return acc;
+		} else {
+			E head = list.head();
+			ImList<E> tail = list.tail();
+			R recursiveResult = foldRight(f, acc, tail);
+			return f.apply(head, recursiveResult);
+		}
 		
 	}
 
@@ -85,9 +111,14 @@ public class Hof {
 	 * @return a list of the mapped results.
 	 */
 	public static <E, R> ImList<R> map(Function<E, R> f, ImList<E> list) {
-		
-			throw new NotYetImplementedException();
-		
+		if (list.isEmpty()) {
+			return ImLists.nil();
+		} else {
+			E head = list.head();
+			ImList<E> tail = list.tail();
+			R mappedValue = f.apply(head);
+			return ImLists.cons(mappedValue, map(f, tail));
+		}
 	}
 
 	/**
@@ -104,9 +135,17 @@ public class Hof {
 	 * @return Optional of the item, if found. Otherwise, empty.
 	 */
 	public static <E> Optional<E> find(Predicate<E> predicate, ImList<E> list) {
-		
-			throw new NotYetImplementedException();
-		
+		if (list.isEmpty()) {
+			return Optional.empty();
+		} else {
+			E head = list.head();
+			ImList<E> tail = list.tail();
+			if (predicate.test(head)) {
+				return Optional.of(head);
+			} else {
+				return find(predicate, tail);
+			}
+		}
 	}
 
 

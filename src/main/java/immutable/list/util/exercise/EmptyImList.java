@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * @author Dekang Cao
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
-/* package-private */ class EmptyImList<E> implements ImList<E> {
+/* package-private */ public class EmptyImList<E> implements ImList<E> {
 
 	private static EmptyImList instance = new EmptyImList();
 	/* package-private */ EmptyImList() {

@@ -2,7 +2,7 @@
 (require 2htdp/image)
 (provide (all-defined-out))
 
-; __STUDENT_NAME__
+; Dekang Cao
 
 (define (heart side-length color)
    (error 'not-yet-implemented))

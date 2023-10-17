@@ -2,7 +2,7 @@
 (require 2htdp/image)
 (provide (all-defined-out))
 
-; __STUDENT_NAME__
+; Dekang Cao
 (define (home roof-side-length roof-color base-width base-height base-color door-width door-height door-color)
    (error 'not-yet-implemented))
 

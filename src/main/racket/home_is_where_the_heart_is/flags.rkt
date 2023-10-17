@@ -2,7 +2,7 @@
 (require 2htdp/image)
 (provide (all-defined-out))
 
-; __STUDENT_NAME__
+; Dekang Cao
 (define (tri-bar-flag/left-to-right width height left-color middle-color right-color)
    (error 'not-yet-implemented))
 

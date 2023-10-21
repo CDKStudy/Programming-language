@@ -7,36 +7,147 @@ structure BinarySearchTree :> BINARY_SEARCH_TREE = struct
 
 	
 	(* TODO: replace unit with the datatype(s) and/or type synonym(s) you decide upon *)
-	type ('e,'k) tree = unit
-	
-
-	fun create_empty(cmp : 'k compare_function, to_key : ('e,'k) to_key_function) : ('e,'k) tree =
-		 raise Fail("NotYetImplemented")
+	(* datatype ('e,'k) tree = 
+	Empty
+	| Node of ('e * ('e, 'k) tree * ('e, 'k) tree) *)
+datatype ('e, 'k) node = 
+        Leaf | 
+        TreeNode of { 
+            data: 'e, 
+            key: 'k, 
+            left: ('e, 'k) node, 
+            right: ('e, 'k) node 
+        }
+	type ('e,'k) tree = {
+        root: ('e, 'k) node,
+        cmp: 'k compare_function,
+        to_key: ('e,'k) to_key_function
+    }
+    
+	fun create_empty(cmp : 'k compare_function, to_key : ('e,'k) to_key_function) : ('e,'k) tree = { root = Leaf, cmp = cmp, to_key = to_key }
 
 	fun find(t : ('e,'k) tree, key : 'k) : 'e option = 
-			raise Fail("NotYetImplemented")
+    let
+        fun helper(Leaf, _) = NONE
+          | helper(TreeNode{data, key = k, left, right}, cmp) =
+            case cmp(key, k) of
+                LESS => helper(left, cmp)
+              | GREATER => helper(right, cmp)
+              | EQUAL => SOME data
+    in
+        helper(#root t, #cmp t)
+    end
 
 	fun insert(t : ('e,'k) tree, element : 'e) : (('e,'k) tree * 'e option) =
-		 raise Fail("NotYetImplemented")
+    let
+        fun helper(Leaf, _, to_key, data) =
+            (TreeNode{data = data, key = to_key data, left = Leaf, right = Leaf}, NONE)
+          | helper(TreeNode{data = node, key = nodeKey, left, right}, cmp, to_key, data) =
+            case cmp(to_key data, nodeKey) of
+                LESS =>
+                    let
+                        val (newLeft, replaced) = helper(left, cmp, to_key, data)
+                    in
+                        (TreeNode{data = node, key = nodeKey, left = newLeft, right = right}, replaced)
+                    end
+                | GREATER =>
+                    let
+                        val (newRight, replaced) = helper(right, cmp, to_key, data)
+                    in
+                        (TreeNode{data = node, key = nodeKey, left = left, right = newRight}, replaced)
+                    end
+                | EQUAL => (TreeNode{data = data, key = nodeKey, left = left, right = right}, SOME node)
+    in
+        let
+            val (newRoot, replaced) = helper(#root t, #cmp t, #to_key t, element)
+        in
+            ({root = newRoot, cmp = #cmp t, to_key = #to_key t}, replaced)
+        end
+    end
 
 	fun remove(t : ('e,'k) tree, key : 'k) : (('e,'k) tree * 'e option) =
-			raise Fail("NotYetImplemented")
+    let
+        fun findMin(TreeNode{data, left = Leaf, ...}) = data
+           | findMin(TreeNode{left, ...}) = findMin(left)
 
-	
+        fun helper(node: ('e, 'k) node, key: 'k, cmp: 'k compare_function, to_key: ('e, 'k) to_key_function): ('e, 'k) node * 'e option =
+            case node of
+                Leaf => (Leaf, NONE)
+              | TreeNode{data, key = k, left, right} =>
+                case cmp(key, k) of
+                    LESS =>
+                        let
+                            val (nLeft, optData) = helper(left, key, cmp, to_key)
+                        in
+                            (TreeNode{data=data, key=k, left=nLeft, right=right}, optData)
+                        end
+
+                    | GREATER =>
+                        let
+                            val (nRight, optData) = helper(right, key, cmp, to_key)
+                        in
+                            (TreeNode{data=data, key=k, left=left, right=nRight}, optData)
+                        end
+
+                    | EQUAL => 
+                        case (left, right) of
+                            (Leaf, Leaf) => (Leaf, SOME data)
+                          | (_, Leaf) => (left, SOME data)
+                          | (Leaf, _) => (right, SOME data)
+                          | _ => 
+                              let
+                                  val succData = findMin(right)
+                                  val (newTree, _) = helper(right, to_key(succData), cmp, to_key)
+                              in
+                                  (TreeNode{data=succData, key=to_key succData, left=left, right=newTree}, SOME data)
+                              end
+
+    in
+        let
+            val (nRoot, opt) = helper(#root t, key, #cmp t, #to_key t)
+        in
+            ({root = nRoot, cmp = #cmp t, to_key = #to_key t}, opt)
+        end
+    end
+
 
 	(*
 	 * depth-first, in-order traversal
 	 * https://en.wikipedia.org/wiki/Tree_traversal#In-order_(LNR)
 	 *)
-	fun fold_lnr(f, init, t) = 
-			raise Fail("NotYetImplemented")
+	fun fold_lnr(f, init, t: ('e, 'k) tree) = 
+    let
+        fun traverse(Leaf, acc) = acc
+          | traverse(TreeNode{data, left, right, ...}, acc) =
+            let
+                val acc1 = traverse(left, acc)
+                val acc2 = f(data, acc1)
+                val acc3 = traverse(right, acc2)
+            in
+                acc3
+            end
+    in
+        traverse(#root t, init)
+    end
 
 	(*
 	 * depth-first, reverse in-order traversal
 	 * https://en.wikipedia.org/wiki/Tree_traversal#Reverse_in-order_(RNL)
 	 *)
-	fun fold_rnl(f, init, t) = 
-			raise Fail("NotYetImplemented")
+	fun fold_rnl(f, init, t: ('e, 'k) tree) = 
+    let
+        fun traverse(Leaf, acc) = acc
+          | traverse(TreeNode{data, left, right, ...}, acc) =
+            let
+                val rightAcc = traverse(right, acc)
+                val newDataAcc = f(data, rightAcc)
+                val leftAcc = traverse(left, newDataAcc)
+            in
+                leftAcc
+            end
+    in
+        traverse(#root t, init)
+    end
 
 	fun to_graphviz_dot(element_to_string, key_to_string, t) =
 		let

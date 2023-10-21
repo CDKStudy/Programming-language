@@ -5,8 +5,8 @@ functor DictionaryFn(DictionaryParameter : DICTIONARY_FUNCTOR_PARAMETER) : DICTI
 	open DictionaryParameter
 
     fun keys(dict : (''k,'v) dictionary) : ''k list = 
-        raise Fail "NotYetImplemented"
+    List.map (fn (k, _) => k) (entries dict)
 
     fun values(dict : (''k,'v) dictionary) : 'v list = 
-        raise Fail "NotYetImplemented"
+    List.map (fn (_, v) => v) (entries dict)
 end

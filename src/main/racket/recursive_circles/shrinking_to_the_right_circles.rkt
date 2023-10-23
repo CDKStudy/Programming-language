@@ -5,7 +5,7 @@
 (define base-case-color (make-color 144 0 0))
 (define recursive-case-color (make-color 0 109 219))
 
-; __STUDENT_NAME__
+; Dekang Cao
 (define (shrinking-to-the-right-circles radius n)
         (error 'not-yet-implemented)) 
 

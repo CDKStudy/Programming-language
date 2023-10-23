@@ -3,7 +3,7 @@
 (require "../spacer/spacer.rkt")
 (provide (all-defined-out))
 
-; __STUDENT_NAME__
+; Dekang Cao
 (define (sierpinski-triangle side-length n)
         (error 'not-yet-implemented)) 
 

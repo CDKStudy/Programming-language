@@ -10,7 +10,7 @@
    )
   )
 
-; __STUDENT_NAME__
+; Dekang Cao
 (define (cantor-stool width height n)
         (error 'not-yet-implemented)) 
 

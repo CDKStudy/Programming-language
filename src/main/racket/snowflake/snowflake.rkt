@@ -2,7 +2,7 @@
 (require 2htdp/image)
 (provide (all-defined-out))
 
-; __STUDENT_NAME__
+; Dekang Cao
 (define (snowflake len iter is-flipped) 
         (raise (error 'not-yet-implemented))) 
 

@@ -2,7 +2,7 @@
 
 (provide (all-defined-out))
 
-; __STUDENT_NAME__
+; Dekang Cao
 
 (define (deep-fold list-fold)
         (error 'not-yet-implemented)) 

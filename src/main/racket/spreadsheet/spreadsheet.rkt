@@ -7,7 +7,7 @@
 (define (to-evalable s)
   (call-with-input-string s read))
 
-; __STUDENT_NAME__
+; Dekang Cao
 (define (string->cell s)
         (error 'not-yet-implemented)) 
 

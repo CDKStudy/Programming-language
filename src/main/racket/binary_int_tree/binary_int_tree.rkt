@@ -1,7 +1,7 @@
 #lang racket
 (provide (all-defined-out))
 
-; __STUDENT_NAME__
+; Dekang Cao
 
 (struct branch (left x right) #:transparent)
 

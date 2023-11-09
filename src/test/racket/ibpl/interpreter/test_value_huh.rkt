@@ -17,6 +17,7 @@
 (assert-eval-false '(value? (IntExp 425)) namespace)
 (assert-eval-false '(value? (NilExp)) namespace)
 (assert-eval-false '(value? (ConsExp (IntExp 1) (IntExp 2))) namespace)
+(assert-eval-false '(value? (FunctionExp #f "x" (IntExp 42))) namespace)
 
 (assert-eval-true '(value? (cons null null)) namespace)
 (assert-eval-true '(value? (cons 1 null)) namespace)

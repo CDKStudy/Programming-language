@@ -48,3 +48,4 @@
     (assert-valid-ast? exp)
     (evaluate-in-empty-environment exp)))
 
+(define (non-contract-exception? e) (and (exn:fail? e) (not (exn:fail:contract? e))))

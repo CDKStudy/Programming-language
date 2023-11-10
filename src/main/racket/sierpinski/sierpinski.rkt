@@ -13,7 +13,6 @@
         (right t2)
         (bottom (beside left right )))(above top bottom))))
 
-; Define a function to create a Sierpiński Carpet
 (define (square side-length color)
 (rectangle side-length side-length 'solid color))
 (define (sierpinski-carpet side-length n)

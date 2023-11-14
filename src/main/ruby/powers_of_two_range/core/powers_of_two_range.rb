@@ -1,4 +1,4 @@
-# __STUDENT_NAME__
+# Dekang Cao
 # Dennis Cosgrove
 
 class PowersOfTwoRange

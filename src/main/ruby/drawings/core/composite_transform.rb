@@ -1,4 +1,4 @@
-# __STUDENT_NAME__
+# Dekang Cao
 
 require_relative 'transform'
 class CompositeTransform < Transform

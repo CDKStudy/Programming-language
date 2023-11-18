@@ -32,3 +32,9 @@
       (LetExp? exp)
       (FunctionExp? exp)
       (CallExp? exp)))
+
+(struct exn:fail:ib-type exn:fail ())
+(define (raise-ib-type-error message value . details)
+  (raise (exn:fail:ib-type
+          (format "Itty Bitty Runtime Type Error: ~a\n\n\t  value: ~a\n\tdetails: ~a\n" message value (string-join (map ~a details) "\n\t"))
+          (current-continuation-marks))))

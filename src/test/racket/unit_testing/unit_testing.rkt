@@ -3,6 +3,15 @@
 
 (provide (all-defined-out))
 
+(define include-case-info (make-parameter #t))
+ 
+(command-line
+ #:once-each
+ [("-o" "--omit-case-info") "omit case info in unit test output" (include-case-info #f)]
+ )
+
+(define (to-case-message message) (if (include-case-info) message "OMITTED"))
+
 (define suite-name-stack (list))
 
 (define (push-suite-name name)
@@ -29,13 +38,13 @@
   (if (f actual)
     (begin
       (indented-outln (string-append "      success. " description))
-      (indented-outln (string-append "         case: " message))
+      (indented-outln (string-append "         case: " (to-case-message message)))
       (indented-outln (string-append "  as expected: " (~v expected)))
       (indented-outln "")
     )
     (begin
       (indented-errln (string-append "    FAILURE!!! " description))
-      (indented-errln (string-append "         case: " message))
+      (indented-errln (string-append "         case: " (to-case-message message)))
       (indented-errln (string-append "     expected: " (~v expected)))
       (indented-errln (string-append "       actual: " (~v actual)))
       (indented-errln "")
@@ -77,14 +86,14 @@
              ([exn-predicate (lambda (exn)
                                (begin
                                  (indented-outln (string-append "      success. assert-eval-exn"))
-                                 (indented-outln (string-append "         case: " top-level-form-text))
+                                 (indented-outln (string-append "         case: " (to-case-message top-level-form-text)))
                                  (indented-outln (string-append "  as expected: " (~v exn-predicate)))
                                  (indented-outln "")
                                  unique-exn-match))]
               [exn:fail? (lambda (exn)
                (begin
                  (indented-errln (string-append "    FAILURE!!! assert-eval-exn"))
-                 (indented-errln (string-append "         case: " top-level-form-text))
+                 (indented-errln (string-append "         case: " (to-case-message top-level-form-text)))
                  (indented-errln (string-append "     expected: " (~v exn-predicate)))
                  (indented-errln (string-append "       actual: different exception " (exn->string exn)))
                  (indented-errln "")
@@ -95,7 +104,7 @@
         (void)
         (begin
           (indented-errln (string-append "    FAILURE!!! assert-eval-exn"))
-          (indented-errln (string-append "         case: " top-level-form-text))
+          (indented-errln (string-append "         case: " (to-case-message top-level-form-text)))
           (indented-errln (string-append "     expected: " (~v exn-predicate)))
           (indented-errln (string-append "       actual: no exception, " (~v actual)))
           (indented-errln "")

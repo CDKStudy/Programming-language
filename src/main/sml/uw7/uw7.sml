@@ -2,7 +2,7 @@
    (See also Ruby code.)
 *)
 
-(* __STUDENT_NAME__ *)
+(* Dekang Cao *)
 
 (* Do not make changes to this code except where you see comments containing
    the word CHANGE. *)

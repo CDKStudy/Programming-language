@@ -1,7 +1,7 @@
 # University of Washington, Programming Languages, Homework 7, hw7.rb 
 # (See also ML code)
 
-# __STUDENT_NAME__
+# Dekang Cao
 
 # a little language for 2D geometry objects
 

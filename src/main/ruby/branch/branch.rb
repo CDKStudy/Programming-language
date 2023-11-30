@@ -1,6 +1,6 @@
 require_relative '../teleporting_turtle/core/teleporting_turtle'
 
-# __STUDENT_NAME__
+# Dekang Cao
 # Dennis Cosgrove
 
 class Branch

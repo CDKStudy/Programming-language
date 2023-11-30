@@ -68,6 +68,7 @@ class OpenGLUtils
           GLFW.load_lib(homebrew_lib_path)
         end
       else
+        # puts "using: #{downloaded_and_extracted_glfw_lib_path}"
         GLFW.load_lib(downloaded_and_extracted_glfw_lib_path)
       end
     else

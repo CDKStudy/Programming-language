@@ -1,3 +1,11 @@
+unless File.class.method_defined?(:exists?)
+  class File
+    def self.exists?(path)
+      exist?(path)
+    end
+  end
+end
+
 class GlfwUtility
   def download_and_extract
     require_relative '../../download/download_utils'

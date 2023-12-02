@@ -51,17 +51,25 @@ class OpenGLUtils
 
       GLFW.load_lib(download_glfw_lib_path)
     elsif OS.mac?
-      pattern = "{/usr/local,/opt/homebrew}/Cellar/glfw/3.*.*/lib/libglfw.dylib"
-      files = Dir.glob(pattern)
-      if files.length == 0
-        # brew libglfw not found. Fall back to system library search path.
-        GLFW.load_lib()
-      else
-        homebrew_lib_path = files[0]
-        if files.length > 1
-          puts "found multiple glfws, selecting: #{homebrew_lib_path}"
+      require_relative 'glfw_utility'
+      glfw_util = GlfwUtility.new
+      downloaded_and_extracted_glfw_lib_path = glfw_util.path_to_downloaded_and_extracted_dynamic_library
+      if downloaded_and_extracted_glfw_lib_path.nil?
+        pattern = "{/usr/local,/opt/homebrew}/Cellar/glfw/3.*.*/lib/libglfw.dylib"
+        files = Dir.glob(pattern)
+        if files.length == 0
+          # brew libglfw not found. Fall back to system library search path.
+          GLFW.load_lib()
+        else
+          homebrew_lib_path = files[0]
+          if files.length > 1
+            puts "found multiple glfws, selecting: #{homebrew_lib_path}"
+          end
+          GLFW.load_lib(homebrew_lib_path)
         end
-        GLFW.load_lib(homebrew_lib_path)
+      else
+        # puts "using: #{downloaded_and_extracted_glfw_lib_path}"
+        GLFW.load_lib(downloaded_and_extracted_glfw_lib_path)
       end
     else
       GLFW.load_lib()

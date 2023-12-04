@@ -48,6 +48,7 @@ class Graphics
     resolution_of_curve.times do |i|
       glEvalCoord1f(i.to_f / resolution_of_curve)
     end
+    glEvalCoord1d(0.999999) # some graphics cards seem to drop the last point!
     glEvalCoord1d(1.0)
     glEnd()
   end

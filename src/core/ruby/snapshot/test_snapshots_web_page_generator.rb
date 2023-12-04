@@ -4,7 +4,7 @@ require 'chunky_png'
 
 class Row
   attr_reader :instance, :eval_exception
-  attr_accessor :diff_report
+  attr_accessor :diff_report, :is_filtered_out
 
   def initialize(pair)
     @pair = pair
@@ -314,12 +314,14 @@ https://www.w3schools.com/howto/howto_js_tabs.asp
 </body>
 </html>}
           s = template.gsub("__TITLE__", @title)
-          s = s.gsub("__ALL__", generate_sub_text(true))
-          s = s.gsub("__ERRORS_ONLY__", generate_sub_text(false))
+          s = s.gsub("__ALL__", generate_sub_text(true, &block))
+          s = s.gsub("__ERRORS_ONLY__", generate_sub_text(false, &block))
           error_count = 0
           @rows.each do |row|
-            if row_error?(row)
-              error_count += 1
+            if is_desired(row, &block)
+              if row_error?(row)
+                error_count += 1
+              end
             end
           end
           case error_count
@@ -342,7 +344,7 @@ https://www.w3schools.com/howto/howto_js_tabs.asp
           s += "<h1>"
           s += @title
           s += "</h1>\n"
-          s += generate_sub_text(true)
+          s += generate_sub_text(true, &block)
           s += "</body>\n"
           s += "</html>"
         end

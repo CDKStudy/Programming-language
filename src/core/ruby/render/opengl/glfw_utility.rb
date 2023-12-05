@@ -30,6 +30,7 @@ class GlfwUtility
   end
 
   private def path_to_dynamic_library
+    require_relative '../../download/download_utils'
     File.join(DownloadUtils.downloads_directory, basename, 'lib-universal', 'libglfw.3.dylib')
   end
 

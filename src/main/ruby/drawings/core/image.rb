@@ -3,6 +3,13 @@
 require_relative '../../../../core/ruby/render/core/render'
 
 class Image
+  def initialize(path)
+    @image_path = path
+  end
+
+  def render(g)
+    g.draw_image(@image_path)
+  end
 end
 
 

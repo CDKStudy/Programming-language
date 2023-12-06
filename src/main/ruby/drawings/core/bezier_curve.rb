@@ -3,8 +3,17 @@
 require_relative '../../../../core/ruby/render/core/render'
 
 class BezierCurve
-  # https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
+  attr_accessor :control_points
+
+  def initialize(control_points)
+    @control_points = control_points
+  end
+
+  def render(g)
+    g.draw_curve(@control_points)
+  end
 end
+
 
 
 

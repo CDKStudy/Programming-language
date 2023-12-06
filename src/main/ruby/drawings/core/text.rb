@@ -3,6 +3,16 @@
 require_relative '../../../../core/ruby/render/core/render'
 
 class Text
+  attr_accessor :text, :font
+
+  def initialize(text, font)
+    @text = text
+    @font = font
+  end
+
+  def render(g)
+    g.draw_string(@text, @font, 0, 0)
+  end
 end
 
 

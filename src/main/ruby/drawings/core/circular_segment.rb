@@ -3,6 +3,33 @@
 require_relative '../../../../core/ruby/render/core/render'
 
 class CircularSegment
+  attr_accessor :x_radius, :y_radius, :theta_a, :theta_z
+
+  def initialize(x_radius, y_radius, theta_a, theta_z)
+    @x_radius = x_radius
+    @y_radius = y_radius
+    @theta_a = theta_a
+    @theta_z = theta_z
+  end
+
+  def render(g)
+    slice_count = 32
+    delta_theta = (@theta_z - @theta_a) / slice_count
+    points = []
+
+    points << Point2.new(@x_radius * Math.cos(@theta_a), @y_radius * Math.sin(@theta_a))
+
+    (slice_count + 1).times do |i|
+      theta = @theta_a + (i * delta_theta)
+      x = @x_radius * Math.cos(theta)
+      y = @y_radius * Math.sin(theta)
+      points << Point2.new(x, y)
+    end
+
+    points << Point2.new(@x_radius * Math.cos(@theta_z), @y_radius * Math.sin(@theta_z))
+
+    g.draw_convex_polygon(points)
+  end
 end
 
 

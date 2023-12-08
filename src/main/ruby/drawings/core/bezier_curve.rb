@@ -2,15 +2,23 @@
 
 require_relative '../../../../core/ruby/render/core/render'
 
-class BezierCurve
+require_relative 'color_transform'
+
+class BezierCurve < ColorTransform
   attr_accessor :control_points
 
-  def initialize(control_points)
+  def initialize(control_points, x: 0, y: 0, color: nil)
+    super(x, y, color)
     @control_points = control_points
   end
 
-  def render(g)
+  private
+
+  def untransformed_render(g)
     g.draw_curve(@control_points)
+  end
+  def untransformed_bounds
+    raise StandardError.new("not yet implemented")
   end
 end
 

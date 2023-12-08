@@ -2,15 +2,22 @@
 
 require_relative '../../../../core/ruby/render/core/render'
 
-class Ellipse
+require_relative 'color_transform'
+
+class Ellipse < ColorTransform
   attr_accessor :x_radius, :y_radius
 
-  def initialize(x_radius, y_radius)
+
+  def initialize(x_radius, y_radius, x: 0, y: 0, color: nil)
+    super(x, y, color)
     @x_radius = x_radius
     @y_radius = y_radius
   end
 
-  def render(g)
+  private
+
+
+  def untransformed_render(g)
     slice_count = 32
     delta_theta = (2 * Math::PI) / slice_count
     points = []
@@ -26,7 +33,14 @@ class Ellipse
 
     g.draw_convex_polygon(points)
   end
+  def untransformed_bounds
+    BoundingBox.new(
+      Point2.new(-@x_radius, -@y_radius),
+      Point2.new(@x_radius, @y_radius)
+    )
+  end
 end
+
 
 
 

@@ -1,14 +1,20 @@
 # Dekang Cao
 
 require_relative '../../../../core/ruby/render/core/render'
-
-class Image
-  def initialize(path)
+require_relative 'transform'
+class Image < Transform
+  def initialize(path, x: 0, y: 0)
+    super(x, y)
     @image_path = path
   end
 
-  def render(g)
+  private
+
+  def untransformed_render(g)
     g.draw_image(@image_path)
+  end
+  def untransformed_bounds
+    raise StandardError.new("not yet implemented")
   end
 end
 

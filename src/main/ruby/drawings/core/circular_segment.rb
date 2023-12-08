@@ -2,17 +2,22 @@
 
 require_relative '../../../../core/ruby/render/core/render'
 
-class CircularSegment
+require_relative 'color_transform'
+
+class CircularSegment < ColorTransform
   attr_accessor :x_radius, :y_radius, :theta_a, :theta_z
 
-  def initialize(x_radius, y_radius, theta_a, theta_z)
+  def initialize(x_radius, y_radius, theta_a, theta_z, x: 0, y: 0, color: nil)
+    super(x, y, color)
     @x_radius = x_radius
     @y_radius = y_radius
     @theta_a = theta_a
     @theta_z = theta_z
   end
 
-  def render(g)
+  private
+
+  def untransformed_render(g)
     slice_count = 32
     delta_theta = (@theta_z - @theta_a) / slice_count
     points = []
@@ -29,6 +34,9 @@ class CircularSegment
     points << Point2.new(@x_radius * Math.cos(@theta_z), @y_radius * Math.sin(@theta_z))
 
     g.draw_convex_polygon(points)
+  end
+  def untransformed_bounds
+    raise StandardError.new("not yet implemented")
   end
 end
 

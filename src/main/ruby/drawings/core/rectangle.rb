@@ -2,15 +2,23 @@
 
 require_relative '../../../../core/ruby/render/core/render'
 
-class Rectangle
+require_relative 'color_transform'
+
+class Rectangle < ColorTransform
   attr_accessor :half_width, :half_height
 
-  def initialize(half_width, half_height)
+  def initialize(half_width, half_height, x: 0, y: 0, color: nil)
+    super(x, y, color)
     @half_width = half_width
     @half_height = half_height
   end
+  def get_untransformed_bounds
+    untransformed_bounds
+  end
+  private
 
-  def render(g)
+
+  def untransformed_render(g)
     width = @half_width * 2
     height = @half_height * 2
 
@@ -32,6 +40,14 @@ class Rectangle
       Point2.new(c_x, c_y),
       Point2.new(d_x, d_y)
     ])
+  end
+  def untransformed_bounds
+    min_x = -@half_width
+    min_y = -@half_height
+    max_x = @half_width
+    max_y = @half_height
+
+    BoundingBox.new(Point2.new(min_x, min_y), Point2.new(max_x, max_y))
   end
 end
 

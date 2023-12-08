@@ -14,23 +14,50 @@
 (define (racket-double n) (+ n n))
 
 (define ib-double 
-        'not-yet-implemented) 
+  (FunctionExp #f "x" (AddExp (IdentifierExp "x") (IdentifierExp "x"))))
+
+
 
 ; racket version for reference
 (define (racket-sum-curry a) (lambda (b) (+ a b)))
 
 (define ib-sum-curry
-        'not-yet-implemented) 
+  (FunctionExp #f "a"
+    (FunctionExp #f "b"
+      (AddExp (IdentifierExp "a") (IdentifierExp "b")))))
+
 
 ; racket version for reference
 (define (racket-call-with-one proc) (proc 1))
 
 (define ib-call-with-one
-        'not-yet-implemented) 
+  (FunctionExp #f "proc"
+    (CallExp (IdentifierExp "proc") (IntExp 1))))
 
-(define ib-map 
-        'not-yet-implemented) 
+(define ib-map
 
-(define ib-map-add-n 
+
+
+  (FunctionExp #f "f"
+    (FunctionExp "ib-map" "lst"
+      (IbIfNil (IdentifierExp "lst")
+        (NilExp) ; return empty list if lst is NilExp
+        (ConsExp ; otherwise, construct a new list
+          (CallExp (IdentifierExp "f") ; apply the function f to the first element of the list
+                   (CarOfConsExp (IdentifierExp "lst")))
+          (CallExp ; and recursively call ib-map on the rest of the list
+             (IdentifierExp "ib-map")
+            (CdrOfConsExp (IdentifierExp "lst"))            
+            ))))))
+
+
+(define ib-map-add-n
   (LetExp "map" ib-map
-                'not-yet-implemented-notice-map-is-now-in-IBPL-scope)) 
+    (FunctionExp #f "i"
+      (FunctionExp #f "lst"
+        (CallExp
+          (CallExp (IdentifierExp "map")
+            (FunctionExp #f "elem"
+              (AddExp (IdentifierExp "elem") (IdentifierExp "i"))))
+          (IdentifierExp "lst"))))))
+

@@ -63,7 +63,11 @@
 
      [(IntExp? exp) (IntExp-value exp)]
 
-     [(AddExp? exp) (+ (evaluate (AddExp-left_exp exp) env) (evaluate (AddExp-right_exp exp) env))]
+     [(AddExp? exp)
+     (cond
+     [(NilExp? (AddExp-left_exp exp))(error "Lack expression")]
+     [(NilExp? (AddExp-right_exp exp))(error "Lack expression")]
+     [else (+ (evaluate (AddExp-left_exp exp) env) (evaluate (AddExp-right_exp exp) env))])]
 
      [(NilExp? exp) '()]
 
@@ -71,39 +75,50 @@
 
      [(ConsExp? exp) (cons (evaluate (ConsExp-car_exp exp) env) (evaluate (ConsExp-cdr_exp exp) env))]
 
-     [(CarOfConsExp? exp) (car (evaluate(CarOfConsExp-cons_exp exp) env))]
-     [(CdrOfConsExp? exp) (cdr (evaluate(CdrOfConsExp-cons_exp exp) env))]
+     [(CarOfConsExp? exp)
+     (cond
+     [(IntExp? (CarOfConsExp-cons_exp exp))(error "is not List")]
+     [else (car (evaluate(CarOfConsExp-cons_exp exp) env))])]
+
+     [(CdrOfConsExp? exp)
+     (cond
+     [(IntExp? (CdrOfConsExp-cons_exp exp))(error "is not List")]
+     [else(cdr (evaluate(CdrOfConsExp-cons_exp exp) env))])]
 
      [(IfGreaterExp? exp)
      (let ([left-val (evaluate (IfGreaterExp-left_exp exp) env)]
       [right-val (evaluate (IfGreaterExp-right_exp exp) env)])
-     (if (> left-val right-val)
+     (if(or(null? left-val)(null? right-val)) 
+     (error "lack exp")
+      (if(> left-val right-val)
       (evaluate (IfGreaterExp-then_body_exp exp) env)
-      (evaluate (IfGreaterExp-else_body_exp exp) env)))]
+      (evaluate (IfGreaterExp-else_body_exp exp) env))))]
 
      [(FunctionExp? exp) (closure env exp)]
 
 
      [(LetExp? exp)
      (let* ([binding-name (LetExp-binding_name exp)]
-     [binding-val (evaluate (LetExp-binding_exp exp) env)]) ; Evaluate the binding expression
-     (let* ([new-env (cons (entry binding-name binding-val) env)]) ; Add the new binding to the environment
-     (evaluate (LetExp-body_exp exp) new-env)))] ; Evaluate the body expression with the new environment
-     
+     [binding-val (evaluate (LetExp-binding_exp exp) env)]) 
+     (let* ([new-env (cons (entry binding-name binding-val) env)])
+     (evaluate (LetExp-body_exp exp) new-env)))] 
 
-     
+
 [(CallExp? exp)
-  (let* ([function-val (evaluate (CallExp-function_exp exp) env)] ; Evaluate the function expression
-         [argument-val (evaluate (CallExp-argument_exp exp) env)]) ; Evaluate the argument expression
-    (if (closure? function-val)
-        (let* ([function-exp (closure-function function-val)] ; Extract the function expression from the closure
-               [function-env (closure-env function-val)] ; Extract the function's defining environment
-               [param-name (FunctionExp-parameter_name function-exp)]) ; Extract the function's parameter name
-          (let* ([new-env (expand-environment param-name argument-val function-env)]) ; Create a new environment for the function body
-            (evaluate (FunctionExp-body_exp function-exp) new-env))) ; Evaluate the function body in the new environment
-        (error "Not a function" function-val)))] ; Error if the evaluated function expression is not a closure
+         (let ([v1 (evaluate (CallExp-function_exp exp) env)]
+               [v2 (evaluate (CallExp-argument_exp exp) env)])
+           (if (closure? v1)
+               (let ([cfb (FunctionExp-body_exp (closure-function v1))] 
+                      [fn (FunctionExp-name_option (closure-function v1))]
+                      [fan (FunctionExp-parameter_name (closure-function v1))] 
+                      [ce (closure-env v1)]) 
+                 (evaluate cfb (if (equal? fn #f)
+                                         (cons (entry fan v2) ce)
+                                         (cons (entry fan v2) (cons (entry fn v1) ce))
+                                         )))
+               (error "IBPL call first argument is not a closure")))]
 
-  [else (raise-argument-error 'exp "expression?" exp)])
+  [else (error "No exp")])
 )
 
 

@@ -66,9 +66,28 @@ import java.util.Objects;
 
 	@Override
 	public Iterator<E> iterator() {
-
-		return null;
-		
+		return new Iterator<E>() {
+			private ImList<E> cur = NonEmptyImList.this;
+			@Override
+			public boolean hasNext() {
+				if(cur != null && !cur.isEmpty()){
+					return true;
+				}
+				return false;
+			}
+			@Override
+			public E next() {
+				if (cur == null) {
+					throw new NoSuchElementException();
+				}
+				if(cur.isEmpty()){
+					throw new NoSuchElementException();
+				}
+				E res = cur.head();
+				cur = cur.tail();
+				return res;
+			}
+		};
 	}
 
 	@Override

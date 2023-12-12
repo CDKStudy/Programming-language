@@ -45,9 +45,17 @@ import java.util.NoSuchElementException;
 
 	@Override
 	public Iterator<E> iterator() {
+		return new Iterator<E>() {
+			@Override
+			public boolean hasNext() {
+				return false;
+			}
 
-		 return null;
-		
+			@Override
+			public E next() {
+				throw new NoSuchElementException();
+			}
+		};
 	}
 
 	@Override

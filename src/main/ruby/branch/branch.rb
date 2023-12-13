@@ -25,9 +25,31 @@ class Branch
 
   private
 
-  def branch(teleporting_turtle, length, line_width, depth_remaining)
-    
-    raise "not_yet_implemented"
+  def branch(teleporting_turtle, length, line_width_in_pixels, depth_remaining)
+    if depth_remaining == 0
+      teleporting_turtle.pen_color = @leaf_color
+      teleporting_turtle.pen_width = line_width_in_pixels
+      teleporting_turtle.forward(length)
+    else
+      next_length = length * 0.5
+      next_line_width_in_pixels = line_width_in_pixels * 0.8
+
+      teleporting_turtle.preserve_yield_restore do
+        teleporting_turtle.forward(2 *length / 3.0)
+        teleporting_turtle.right(30)
+        branch(teleporting_turtle, next_length, next_line_width_in_pixels, depth_remaining - 1)
+      end
+
+      teleporting_turtle.preserve_yield_restore do
+        teleporting_turtle.forward( length / 3.0)
+        teleporting_turtle.right(-30)
+        branch(teleporting_turtle, next_length, next_line_width_in_pixels, depth_remaining - 1)
+      end
+
+      teleporting_turtle.pen_color = @wood_color
+      teleporting_turtle.pen_width = line_width_in_pixels
+      teleporting_turtle.forward(length)
+    end
   end
 end
 
